@@ -4,13 +4,12 @@ const { Server } = require("net");
 const server = new Server();
 
 server.on("connection", (socket) => {
-  console.log(`New conection from ${socket.remoteAddress}: ${socket.remotePort}`);
+    const remoteSocket=`${socket.remoteAddress}: ${socket.remotePort}`;
+  console.log(`New conection from ${remoteSocket}`);
 
   socket.setEncoding('utf-8');
-  socket.on('data',(data)=>{
-      console.log(data);
-
-      socket.write(`Echo: ${data}`);
+  socket.on('data',(message)=>{
+      console.log(`${remoteSocket} -> ${message}`);
   })
 });
 
